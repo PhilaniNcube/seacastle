@@ -28,7 +28,7 @@ export default function ComingSoon() {
             Coming Soon
           </h1>
           <p className="text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-            We're working hard to bring you something amazing. Stay tuned!
+            We&apos;re working hard to bring you something amazing. Stay tuned!
           </p>
         </div>
         <div className="space-y-4">
