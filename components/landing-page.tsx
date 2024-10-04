@@ -131,7 +131,7 @@ export default function LuxuryBnBLanding() {
       <header className="bg-white shadow-sm">
         <div className="container mx-auto flex flex-col justify-center items-center px-4 py-6">
           <Image
-            src="https://img.raccoonstatic.com/user/logo/a786feb98035eb1b.jpg?mod-1694688638"
+            src="/images/seacastle-logo.png"
             alt="Sea Castle"
             className="w-[200px] lg:w-[300px] object-cover"
             width={800}
@@ -241,7 +241,7 @@ export default function LuxuryBnBLanding() {
 
       <footer className="bg-gray-800 text-white py-8">
         <div className="container mx-auto px-4 text-center">
-          <p>&copy; Primi Seacastle, Boutique Hotel. All rights reserved.</p>
+          <p>&copy; Seacastle, Boutique Hotel. All rights reserved.</p>
           <p className="mt-2">10 Strathmore Ln, Camps Bay, Cape Town, 8040</p>
           <p className="mt-2">
             Phone: 021 438 4010 | Email: seacastle@primi-hotels.com
