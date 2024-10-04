@@ -244,7 +244,7 @@ export default function LuxuryBnBLanding() {
           <p>&copy; Seacastle, Boutique Hotel. All rights reserved.</p>
           <p className="mt-2">10 Strathmore Ln, Camps Bay, Cape Town, 8040</p>
           <p className="mt-2">
-            Phone: 021 438 4010 | Email: seacastle@primi-hotels.com
+            Phone: +27 (21) 879-8509 | Email: seacastle@primi-hotels.com
           </p>
         </div>
       </footer>
