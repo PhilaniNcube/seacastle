@@ -15,11 +15,17 @@ import {
 } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
 import { CalendarDays } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 
 const routes = [
   { name: "Gallery", path: "/gallery" },
   { name: "Rooms", path: "/rooms" },
   // { name: "Kitchen", path: "/kitchen" },
+  { 
+    name: "Surf Cam", 
+    path: "https://www.surfline.com/surf-report/camps-bay/617b196682a9fb124a873a62?camId=619e31b778e5f7038a984f7a&pageSection=liveCam",
+    external: true
+  },
 ];
 
 export default function Navigation() {
@@ -40,14 +46,17 @@ export default function Navigation() {
                 <Link
                   key={route.path}
                   href={route.path}
+                  target={route.external ? "_blank" : undefined}
+                  rel={route.external ? "noopener noreferrer" : undefined}
                   className={cn(
-                    "px-3 py-2 rounded-md text-sm font-medium",
+                    "px-3 py-2 rounded-md text-sm font-medium flex items-center gap-1",
                     pathname === route.path
                       ? "bg-primary text-primary-foreground"
                       : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
                   )}
                 >
                   {route.name}
+                  {route.external && <ExternalLink className="h-3 w-3" />}
                 </Link>
               ))}
               <Link
@@ -80,14 +89,17 @@ export default function Navigation() {
                     <Link
                       key={route.path}
                       href={route.path}
+                      target={route.external ? "_blank" : undefined}
+                      rel={route.external ? "noopener noreferrer" : undefined}
                       className={cn(
-                        "px-3 py-2 rounded-md text-sm font-medium",
+                        "px-3 py-2 rounded-md text-sm font-medium flex items-center gap-1",
                         pathname === route.path
                           ? "bg-primary text-primary-foreground"
                           : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
                       )}
                     >
                       {route.name}
+                      {route.external && <ExternalLink className="h-3 w-3" />}
                     </Link>
                   ))}
                   <Link
