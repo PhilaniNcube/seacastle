@@ -73,7 +73,7 @@ export default function RoomDetail({room}: RoomDetailProps) {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.5 }}
-                className="absolute inset-0"
+                style={{ position: 'absolute', inset: 0 }}
               >
                 <Image
                   src={room.images[currentImageIndex]}
