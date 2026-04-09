@@ -220,25 +220,47 @@ export default function RoomDetail({ room }: RoomDetailProps) {
                 Check availability and rates for your preferred dates.
               </p>
 
-              {/* Availability Widget Placeholder */}
-              <div className="bg-background rounded-sm p-6 border border-border mb-6">
-                <p className="text-muted-foreground text-sm text-center">
-                  Availability widget will appear here
+              {/* Room-Specific Availability Widget */}
+              <div className="mb-6">
+                <p className="text-xs text-muted-foreground uppercase tracking-wider mb-2">
+                  Availability
                 </p>
-                <p className="text-muted-foreground text-xs text-center mt-1">
-                  Embed your RoomRaccoon widget
-                </p>
+                <div 
+                  id={`availability-widget-${room.slug}`}
+                  className="bg-background rounded-sm p-6 border border-border min-h-[120px] flex items-center justify-center"
+                >
+                  {/* PASTE YOUR ROOMRACCOON AVAILABILITY WIDGET CODE HERE */}
+                  <div className="text-center">
+                    <p className="text-muted-foreground text-sm">
+                      Availability Widget
+                    </p>
+                    <p className="text-muted-foreground text-xs mt-1">
+                      Container ID: availability-widget-{room.slug}
+                    </p>
+                  </div>
+                </div>
               </div>
 
-              <Link
-                href="https://booking.roomraccoon.co.za/primi-seacastle/en/"
-                target="_blank"
-                className="block"
-              >
-                <Button className="w-full bg-accent hover:bg-accent/90 text-accent-foreground tracking-wide uppercase text-sm py-6">
-                  Check Availability
-                </Button>
-              </Link>
+              {/* Room-Specific Booking Button Widget */}
+              <div className="mb-6">
+                <p className="text-xs text-muted-foreground uppercase tracking-wider mb-2">
+                  Book Now
+                </p>
+                <div 
+                  id={`booking-button-widget-${room.slug}`}
+                  className="bg-background rounded-sm p-4 border border-border min-h-[60px] flex items-center justify-center"
+                >
+                  {/* PASTE YOUR ROOMRACCOON BOOKING BUTTON WIDGET CODE HERE */}
+                  <div className="text-center">
+                    <p className="text-muted-foreground text-sm">
+                      Booking Button Widget
+                    </p>
+                    <p className="text-muted-foreground text-xs mt-1">
+                      Container ID: booking-button-widget-{room.slug}
+                    </p>
+                  </div>
+                </div>
+              </div>
 
               <p className="mt-4 text-xs text-muted-foreground text-center">
                 Best rate guaranteed when booking direct
