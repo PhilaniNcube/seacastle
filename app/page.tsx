@@ -1,11 +1,5 @@
-
-import LuxuryBnBLanding from "@/components/landing-page";
-import ComingSoon from "../components/coming-soon";
+import LandingPage from "@/components/landing-page";
 
 export default function Home() {
-  return (
-    <>
-      <LuxuryBnBLanding />
-    </>
-  );
+  return <LandingPage />;
 }

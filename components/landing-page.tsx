@@ -1,251 +1,286 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+import { rooms } from "@/data/rooms";
+import { ArrowRight, MapPin, Phone, Mail, Waves, Coffee, Tv, Bath } from "lucide-react";
 
-const rooms = [
-  {
-    name: "Classic Suite",
-    slug: "classic-suite",
-    description:
-      "Featuring a terrace with sea views & private bathroom. The suites have air-conditioning, bar fridge, satellite TV & coffee/tea -making facilities. Please note; 1 suite has a double bed and the others 2 single beds which can be made-up as a king-size bed upon request. There is also a double sleeper sofa in each suite.",
-    images: [
-      "https://img.raccoonstatic.com/user/rooms/a786feb98035eb1b-8931-1682bbe39313fd4e1680081676.jpg?ts=1680081678",
-      "https://img.raccoonstatic.com/user/rooms/a786feb98035eb1b-8931-17481b873a1615f81680081752.jpg?ts=1680081753",
-      "https://img.raccoonstatic.com/user/rooms/a786feb98035eb1b-8931-2.jpg?ts=1573313603",
-      "https://img.raccoonstatic.com/user/rooms/a786feb98035eb1b-8931-c3d7d5e4bc04d5aa1680082341.jpg?ts=1680082343",
-      "https://img.raccoonstatic.com/user/rooms/a786feb98035eb1b-8931-3.jpg?ts=1605084485",
-      "https://img.raccoonstatic.com/user/rooms/a786feb98035eb1b-8931-74bf1e059e1eaad11680082429.jpg?ts=1680082431",
-      "https://img.raccoonstatic.com/user/rooms/a786feb98035eb1b-8931-4.jpg?ts=1605084485",
-      "https://img.raccoonstatic.com/user/rooms/a786feb98035eb1b-8931-0c4fd7c526d7ffd51680082474.jpg?ts=1680082477",
-      "https://img.raccoonstatic.com/user/rooms/a786feb98035eb1b-8931-5.jpg?ts=1605084485",
-      "https://img.raccoonstatic.com/user/rooms/a786feb98035eb1b-8931-b985e055038507fd1680082523.jpg?ts=1680082525",
-      "https://img.raccoonstatic.com/user/rooms/a786feb98035eb1b-8931-6.jpg?ts=1605084485",
-      "https://img.raccoonstatic.com/user/rooms/a786feb98035eb1b-8931-7d0c0d8f81fcdb961680082628.jpg?ts=1680082631",
-      "https://img.raccoonstatic.com/user/rooms/a786feb98035eb1b-8931-7.jpg?ts=1573313603",
-      "https://img.raccoonstatic.com/user/rooms/a786feb98035eb1b-8931-cac296713cec819d1680082620.jpg?ts=1680082622",
-      "https://img.raccoonstatic.com/user/rooms/a786feb98035eb1b-8931-99c756ed0941e2e51680082638.jpg?ts=1680082640",
-      "https://img.raccoonstatic.com/user/rooms/a786feb98035eb1b-8931-5cbe3d2590fe0a071680082611.jpg?ts=1680082613",
-    ],
-    attributes: {
-      view: "Sea View",
-      bathroom: "Private",
-      breakfast_included: true,
-    },
-  },
-  {
-    name: "Standard Sea View",
-    slug: "standard-sea-view",
-    description:
-      "This air-conditioned room is brightly decorated and features a satellite TV and tea-and-coffee-making facilities. The private bathroom includes a shower and free toiletries.",
-    images: [
-      "https://img.raccoonstatic.com/user/rooms/a786feb98035eb1b-8930-27177c8458957c981680249134.jpg?ts=1680249137",
-      "https://img.raccoonstatic.com/user/rooms/a786feb98035eb1b-8930-4a72ff8e2f2292ac1680515512.jpg?ts=1680515514",
-      "https://img.raccoonstatic.com/user/rooms/a786feb98035eb1b-8930-592d3e06d499f4bc1680515534.jpg?ts=1680515536",
-      "https://img.raccoonstatic.com/user/rooms/a786feb98035eb1b-8930-6ad1e2e92f736e501680515525.jpg?ts=1680515527",
-      "https://img.raccoonstatic.com/user/rooms/a786feb98035eb1b-8930-9d8d04d408d4c37d1680249145.jpg?ts=1680249148",
-      "https://img.raccoonstatic.com/user/rooms/a786feb98035eb1b-8930-e451bdbed46c4e591680522970.jpg?ts=1680522973",
-      "https://img.raccoonstatic.com/user/rooms/a786feb98035eb1b-8930-ee62fa4f0f433d711680522988.jpg?ts=1680522990",
-    ],
-    attributes: {
-      view: "Sea View",
-      bathroom: "Private",
-      breakfast_included: true,
-    },
-  },
-  {
-    name: "Pool and Sea Facing",
-    slug: "pool-and-sea-facing",
-    description:
-      "Sea facing room leading onto the pool deck. This air-conditioned room is brightly decorated and features a satellite TV and tea-and-coffee-making facilities, including a private bathroom with free toiletries.",
-    images: [
-      "https://img.raccoonstatic.com/user/rooms/a786feb98035eb1b-57565-1bfc1ebe3bae97091696692868.jpg?ts=",
-      "https://img.raccoonstatic.com/user/rooms/a786feb98035eb1b-57565-c6136ebfaa4d92ac1696692866.jpg?ts=",
-      "https://img.raccoonstatic.com/user/rooms/a786feb98035eb1b-57565-7f72cafac689b3341696693000.jpg?ts=",
-    ],
-    attributes: {
-      view: "Sea View",
-      bathroom: "Private",
-      breakfast_included: true,
-    },
-  },
-  {
-    name: "Standard Room",
-    slug: "standard-rooms",
-    description:
-      "This air-conditioned room is brightly decorated and features a satellite TV and tea-and-coffee-making facilities. Each has a private bathroom with free toiletries. Please note that this Standard Room has NO sea views. We will do our best to secure a room with a sea view should you request, but we cannot guarantee this. For a guaranteed sea view room, please consider our Classic Suites.",
-    images: [
-      "https://img.raccoonstatic.com/user/rooms/a786feb98035eb1b-22354-188f597057106afa1680515681.jpg?ts=1680515683",
-      "https://img.raccoonstatic.com/user/rooms/a786feb98035eb1b-22354-eff7d031dd8b18d71680515763.jpg?ts=1680515765",
-      "https://img.raccoonstatic.com/user/rooms/a786feb98035eb1b-22354-3ae897d21266fd8f1680515715.jpg?ts=1680515717",
-      "https://img.raccoonstatic.com/user/rooms/a786feb98035eb1b-22354-70a745a8f7c5ff221680515789.jpg?ts=1680515791",
-      "https://img.raccoonstatic.com/user/rooms/a786feb98035eb1b-22354-d15054df5bd6b3601680515756.jpg?ts=1680515757",
-      "https://img.raccoonstatic.com/user/rooms/a786feb98035eb1b-22354-62d0c5367ffbc3231680515697.jpg?ts=1680515699",
-      "https://img.raccoonstatic.com/user/rooms/a786feb98035eb1b-22354-7842edfe82cea3bf1680515723.jpg?ts=1680515725",
-      "https://img.raccoonstatic.com/user/rooms/a786feb98035eb1b-22354-ab7162191b9087401680515706.jpg?ts=1680515708",
-      "https://img.raccoonstatic.com/user/rooms/a786feb98035eb1b-22354-07f077164bdfa62f1680516003.jpg?ts=1680516005",
-      "https://img.raccoonstatic.com/user/rooms/a786feb98035eb1b-22354-0b8110cd227646de1680515994.jpg?ts=1680515996",
-      "https://img.raccoonstatic.com/user/rooms/a786feb98035eb1b-22354-827bf7812651944f1680515945.jpg?ts=1680515947",
-      "https://img.raccoonstatic.com/user/rooms/a786feb98035eb1b-22354-eaaa7b5af6d4ea7b1680515920.jpg?ts=1680515922",
-    ],
-    attributes: {
-      view: "Standard View",
-      bathroom: "Private",
-      breakfast_included: true,
-    },
-  },
-];
-
-type Room = (typeof rooms)[number];
-
-export default function LuxuryBnBLanding() {
-  const [selectedRoom, setSelectedRoom] = useState<Room | null>(null);
-
+export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-gray-100">
-      <header className="bg-white shadow-sm">
-        <div className="container mx-auto flex flex-col justify-center items-center px-4 py-6">
+    <div className="min-h-screen bg-background">
+      {/* Hero Section */}
+      <section className="relative h-screen">
+        <div className="absolute inset-0">
           <Image
-            src="/images/seacastle-logo.png"
-            alt="Sea Castle"
-            className="w-[200px] lg:w-[300px] object-cover"
-            width={800}
-            height={206}
+            src={rooms[0].images[0]}
+            alt="Sea Castle Boutique Hotel"
+            fill
+            className="object-cover"
+            priority
           />
+          <div className="absolute inset-0 bg-foreground/40" />
         </div>
-      </header>
+        <div className="relative h-full flex flex-col items-center justify-center text-center px-6">
+          <span className="text-primary-foreground/80 tracking-[0.3em] uppercase text-sm mb-4">
+            Camps Bay, Cape Town
+          </span>
+          <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl text-primary-foreground font-light tracking-tight text-balance max-w-4xl">
+            Sea Castle
+          </h1>
+          <p className="mt-6 text-primary-foreground/90 text-lg md:text-xl max-w-2xl leading-relaxed">
+            A boutique retreat where the Atlantic Ocean meets timeless elegance
+          </p>
+          <div className="mt-10 flex flex-col sm:flex-row gap-4">
+            <Link href="https://booking.roomraccoon.co.za/primi-seacastle/en/" target="_blank">
+              <Button
+                size="lg"
+                className="bg-accent hover:bg-accent/90 text-accent-foreground tracking-wide uppercase text-sm px-8 py-6"
+              >
+                Check Availability
+              </Button>
+            </Link>
+            <Link href="/rooms">
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-primary-foreground/30 text-primary-foreground bg-transparent hover:bg-primary-foreground/10 tracking-wide uppercase text-sm px-8 py-6"
+              >
+                Explore Rooms
+              </Button>
+            </Link>
+          </div>
+        </div>
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+          <div className="w-6 h-10 border-2 border-primary-foreground/50 rounded-full flex justify-center pt-2">
+            <div className="w-1 h-3 bg-primary-foreground/50 rounded-full" />
+          </div>
+        </div>
+      </section>
 
-      <main className="container mx-auto px-4 py-12">
-        <section className="mb-16">
-          <h2 className="text-2xl font-semibold mb-6">Our Luxurious Rooms</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {/* Introduction Section */}
+      <section className="py-24 md:py-32">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="max-w-3xl mx-auto text-center">
+            <span className="text-accent tracking-[0.2em] uppercase text-sm font-medium">
+              Welcome
+            </span>
+            <h2 className="mt-4 font-serif text-4xl md:text-5xl font-light tracking-tight text-balance">
+              Your Seaside Sanctuary
+            </h2>
+            <p className="mt-8 text-muted-foreground text-lg leading-relaxed">
+              Nestled along the pristine shores of Camps Bay, Sea Castle offers an intimate 
+              escape where every detail has been thoughtfully curated. Wake to the sound of 
+              waves, savor breakfast with panoramic ocean views, and experience the warmth 
+              of South African hospitality.
+            </p>
+          </div>
+
+          <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+            {[
+              { icon: Waves, label: "Ocean Views", desc: "Breathtaking Atlantic vistas" },
+              { icon: Coffee, label: "Breakfast", desc: "Complimentary daily" },
+              { icon: Bath, label: "Private Bath", desc: "En-suite bathrooms" },
+              { icon: Tv, label: "Modern Amenities", desc: "Satellite TV & WiFi" },
+            ].map((amenity) => (
+              <div key={amenity.label} className="text-center">
+                <div className="w-14 h-14 mx-auto rounded-full bg-secondary flex items-center justify-center">
+                  <amenity.icon className="h-6 w-6 text-accent" />
+                </div>
+                <h3 className="mt-4 font-medium text-foreground">{amenity.label}</h3>
+                <p className="mt-1 text-sm text-muted-foreground">{amenity.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Rooms Preview Section */}
+      <section className="py-24 md:py-32 bg-secondary/50">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
+            <div>
+              <span className="text-accent tracking-[0.2em] uppercase text-sm font-medium">
+                Accommodations
+              </span>
+              <h2 className="mt-4 font-serif text-4xl md:text-5xl font-light tracking-tight">
+                Our Rooms
+              </h2>
+            </div>
+            <Link href="/rooms">
+              <Button variant="ghost" className="group text-muted-foreground hover:text-foreground">
+                View All Rooms
+                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </Button>
+            </Link>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {rooms.map((room) => (
-              <Card key={room.slug} className="overflow-hidden">
-                <CardHeader className="p-0">
+              <Link
+                key={room.slug}
+                href={`/rooms/${room.slug}`}
+                className="group block"
+              >
+                <div className="relative aspect-[4/5] overflow-hidden rounded-sm">
                   <Image
                     src={room.images[0]}
                     alt={room.name}
-                    width={400}
-                    height={300}
-                    className="w-full h-48 object-cover"
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                </CardHeader>
-                <CardContent className="p-4">
-                  <CardTitle>{room.name}</CardTitle>
-                  <CardDescription className="mt-2 line-clamp-3">
-                    {room.description}
-                  </CardDescription>
-                </CardContent>
-                <CardFooter className="flex justify-between items-center p-4">
-                  <div className="flex gap-2">
-                    <Badge variant="secondary">{room.attributes.view}</Badge>
-                    {room.attributes.breakfast_included && (
-                      <Badge variant="outline">Breakfast Included</Badge>
-                    )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 via-transparent to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-6">
+                    <span className="text-primary-foreground/70 text-xs tracking-wider uppercase">
+                      {room.attributes.view}
+                    </span>
+                    <h3 className="mt-1 font-serif text-xl text-primary-foreground">
+                      {room.name}
+                    </h3>
                   </div>
-                  <Dialog>
-                    <DialogTrigger asChild>
-                      <Button
-                        variant="outline"
-                        onClick={() => setSelectedRoom(room)}
-                      >
-                        View Details
-                      </Button>
-                    </DialogTrigger>
-                    <DialogContent className="max-w-4xl">
-                      <DialogHeader>
-                        <DialogTitle>{room.name}</DialogTitle>
-                        <DialogDescription>
-                          {room.description}
-                        </DialogDescription>
-                      </DialogHeader>
-                      <div className="mt-4">
-                        <Carousel className="w-full max-w-xs mx-auto">
-                          <CarouselContent>
-                            {room.images.map((image, index) => (
-                              <CarouselItem key={index}>
-                                <Image
-                                  src={image}
-                                  alt={`${room.name} - Image ${index + 1}`}
-                                  width={400}
-                                  height={300}
-                                  className="w-full h-64 object-cover rounded-lg"
-                                />
-                              </CarouselItem>
-                            ))}
-                          </CarouselContent>
-                          <CarouselPrevious />
-                          <CarouselNext />
-                        </Carousel>
-                      </div>
-                      <div className="mt-4 flex flex-wrap gap-2">
-                        <Badge>{room.attributes.view}</Badge>
-                        <Badge variant="outline">
-                          {room.attributes.bathroom} Bathroom
-                        </Badge>
-                        {room.attributes.breakfast_included && (
-                          <Badge variant="secondary">Breakfast Included</Badge>
-                        )}
-                      </div>
-                    </DialogContent>
-                  </Dialog>
-                </CardFooter>
-              </Card>
+                </div>
+              </Link>
             ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section className="text-center">
-          <h2 className="text-2xl font-semibold mb-4">
-            Experience Luxury by the Sea
+      {/* Booking Widget Section */}
+      <section className="py-24 md:py-32">
+        <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
+          <span className="text-accent tracking-[0.2em] uppercase text-sm font-medium">
+            Reservations
+          </span>
+          <h2 className="mt-4 font-serif text-4xl md:text-5xl font-light tracking-tight text-balance">
+            Plan Your Stay
           </h2>
-          <p className="text-lg text-gray-600 mb-8">
-            Book your stay now and indulge in the perfect getaway
+          <p className="mt-6 text-muted-foreground text-lg max-w-2xl mx-auto">
+            Check availability and secure your seaside escape at Sea Castle Boutique Hotel
           </p>
-          <Button size="lg">
-            <a
-              href="https://booking.roomraccoon.co.za/primi-seacastle/en/"
-              target="_blank"
-              className="RoomRaccoonButton1 RoomRaccoonButton1-en"
-            >
-              Book
-            </a>
-          </Button>
-        </section>
-      </main>
+          
+          {/* Booking Widget Placeholder - Add your RoomRaccoon embed code here */}
+          <div className="mt-12 p-12 bg-secondary/50 rounded-sm border border-border">
+            <p className="text-muted-foreground text-sm">
+              Booking widget will appear here
+            </p>
+            <p className="text-muted-foreground text-xs mt-2">
+              Embed your RoomRaccoon availability widget in this section
+            </p>
+            <Link href="https://booking.roomraccoon.co.za/primi-seacastle/en/" target="_blank">
+              <Button
+                size="lg"
+                className="mt-6 bg-accent hover:bg-accent/90 text-accent-foreground tracking-wide uppercase text-sm px-8"
+              >
+                Book Direct
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
 
-      <footer className="bg-gray-800 text-white py-8">
-        <div className="container mx-auto px-4 text-center">
-          <p>&copy; Sea Castle, Boutique Hotel. All rights reserved.</p>
-          <p className="mt-2">15 Strathmore LANE, Camps Bay, Cape Town, 8040</p>
-          <p className="mt-2">
-            Phone: +27 (21) 879-8509 | Email: seacastle@primi-hotels.com
-          </p>
+      {/* Location Section */}
+      <section className="py-24 md:py-32 bg-secondary/50">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            <div>
+              <span className="text-accent tracking-[0.2em] uppercase text-sm font-medium">
+                Location
+              </span>
+              <h2 className="mt-4 font-serif text-4xl md:text-5xl font-light tracking-tight">
+                Find Us
+              </h2>
+              <p className="mt-6 text-muted-foreground text-lg leading-relaxed">
+                Located in the heart of Camps Bay, Sea Castle is just steps away from the 
+                famous white-sand beach and a short drive from Cape Town&apos;s top attractions.
+              </p>
+              <div className="mt-10 space-y-6">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center flex-shrink-0">
+                    <MapPin className="h-5 w-5 text-accent" />
+                  </div>
+                  <div>
+                    <h3 className="font-medium text-foreground">Address</h3>
+                    <p className="mt-1 text-muted-foreground">
+                      15 Strathmore Lane, Camps Bay<br />
+                      Cape Town, 8040
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center flex-shrink-0">
+                    <Phone className="h-5 w-5 text-accent" />
+                  </div>
+                  <div>
+                    <h3 className="font-medium text-foreground">Phone</h3>
+                    <p className="mt-1 text-muted-foreground">+27 (21) 879-8509</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center flex-shrink-0">
+                    <Mail className="h-5 w-5 text-accent" />
+                  </div>
+                  <div>
+                    <h3 className="font-medium text-foreground">Email</h3>
+                    <p className="mt-1 text-muted-foreground">seacastle@primi-hotels.com</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="relative aspect-square lg:aspect-auto lg:h-[500px] rounded-sm overflow-hidden">
+              <Image
+                src={rooms[1].images[0]}
+                alt="Camps Bay Location"
+                fill
+                className="object-cover"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="py-16 bg-foreground text-primary-foreground">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="grid md:grid-cols-3 gap-12">
+            <div>
+              <h3 className="font-serif text-2xl font-light">Sea Castle</h3>
+              <p className="mt-4 text-primary-foreground/70 text-sm leading-relaxed">
+                A boutique retreat in Camps Bay where luxury meets the sea.
+              </p>
+            </div>
+            <div>
+              <h4 className="text-sm tracking-wider uppercase text-primary-foreground/50 mb-4">
+                Quick Links
+              </h4>
+              <div className="space-y-3">
+                <Link href="/rooms" className="block text-primary-foreground/70 hover:text-primary-foreground text-sm transition-colors">
+                  Our Rooms
+                </Link>
+                <Link href="/gallery" className="block text-primary-foreground/70 hover:text-primary-foreground text-sm transition-colors">
+                  Gallery
+                </Link>
+                <Link href="https://booking.roomraccoon.co.za/primi-seacastle/en/" target="_blank" className="block text-primary-foreground/70 hover:text-primary-foreground text-sm transition-colors">
+                  Book Now
+                </Link>
+              </div>
+            </div>
+            <div>
+              <h4 className="text-sm tracking-wider uppercase text-primary-foreground/50 mb-4">
+                Contact
+              </h4>
+              <div className="space-y-3 text-sm text-primary-foreground/70">
+                <p>15 Strathmore Lane, Camps Bay</p>
+                <p>Cape Town, 8040</p>
+                <p>+27 (21) 879-8509</p>
+                <p>seacastle@primi-hotels.com</p>
+              </div>
+            </div>
+          </div>
+          <div className="mt-16 pt-8 border-t border-primary-foreground/10 text-center">
+            <p className="text-primary-foreground/50 text-sm">
+              Sea Castle Boutique Hotel. All rights reserved.
+            </p>
+          </div>
         </div>
       </footer>
     </div>
