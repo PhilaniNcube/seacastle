@@ -21,6 +21,9 @@ export const metadata: Metadata = {
   description: "Luxury Boutique Hotel in Camps Bay, Cape Town",
   keywords: ["hotel", "luxury", "boutique", "Camps Bay", "Cape Town"],
   robots: "index, follow",
+  verification: {
+    google: "wPZLfWVWyaA4vycRl22_8UL4YgrZDn3ORrl0-bVQyGg",
+  },
   openGraph: {
     title: "Sea Castle Boutique Hotel",
     description: "Luxury Boutique Hotel in Camps Bay, Cape Town",
