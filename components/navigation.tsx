@@ -44,17 +44,17 @@ export default function Navigation() {
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         isScrolled
           ? "bg-background/95 backdrop-blur-sm border-b shadow-sm"
-          : "bg-transparent"
+          : "bg-transparent",
       )}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           <Link href="/" className="flex items-center gap-3">
             <Image
-              src="/images/seacastle-logo.png"
+              src="/images/seacastle-logo.webp"
               alt="Sea Castle"
-              width={180}
-              height={46}
+              width={915}
+              height={192}
               className="h-10 w-auto"
             />
           </Link>
@@ -68,26 +68,24 @@ export default function Navigation() {
                 rel={route.external ? "noopener noreferrer" : undefined}
                 className={cn(
                   "text-sm tracking-wide uppercase transition-colors flex items-center gap-1",
+                  isScrolled ? "text-foreground" : "text-white",
                   pathname === route.path
                     ? "text-foreground font-medium"
-                    : "text-muted-foreground hover:text-foreground"
+                    : "text-muted-foreground hover:text-foreground",
                 )}
               >
                 {route.name}
                 {route.external && <ExternalLink className="h-3 w-3" />}
               </Link>
             ))}
-            <Link
+            <a
               href="https://booking.roomraccoon.co.za/primi-seacastle/en/"
               target="_blank"
+              className="RoomRaccoonButton1 RoomRaccoonButton1-en"
+              style={{ position: "relative", fontSize: "15px", lineHeight: "36px", padding: "7px 13px", border: "none", borderRadius: "5px", background: "#258175", color: "#fff", cursor: "pointer", textDecoration: "none" }}
             >
-              <Button
-                variant="default"
-                className="bg-accent hover:bg-accent/90 text-accent-foreground tracking-wide uppercase text-sm px-6"
-              >
-                Book Now
-              </Button>
-            </Link>
+              Book Now
+            </a>
           </div>
 
           <div className="md:hidden">
@@ -115,7 +113,7 @@ export default function Navigation() {
                         "px-4 py-3 text-sm tracking-wide uppercase transition-colors flex items-center gap-1 rounded-md",
                         pathname === route.path
                           ? "bg-secondary text-foreground font-medium"
-                          : "text-muted-foreground hover:bg-secondary hover:text-foreground"
+                          : "text-muted-foreground hover:bg-secondary hover:text-foreground",
                       )}
                     >
                       {route.name}

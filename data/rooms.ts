@@ -2,6 +2,7 @@ export const rooms = [
   {
     name: "Classic Suite",
     slug: "classic-suite",
+    roomId: "8931",
     description:
       "Featuring a terrace with sea views & private bathroom. The suites have air-conditioning, bar fridge, satellite TV & coffee/tea -making facilities. Please note; 1 suite has a double bed and the others 2 single beds which can be made-up as a king-size bed upon request. There is also a double sleeper sofa in each suite.",
     images: [
@@ -31,6 +32,7 @@ export const rooms = [
   {
     name: "Standard Sea View",
     slug: "standard-sea-view",
+    roomId: "8930",
     description:
       "This air-conditioned room is brightly decorated and features a satellite TV and tea-and-coffee-making facilities. The private bathroom includes a shower and free toiletries.",
     images: [
@@ -51,6 +53,7 @@ export const rooms = [
   {
     name: "Pool and Sea Facing",
     slug: "pool-and-sea-facing",
+    roomId: "57565",
     description:
       "Sea facing room leading onto the pool deck. This air-conditioned room is brightly decorated and features a satellite TV and tea-and-coffee-making facilities, including a private bathroom with free toiletries.",
     images: [
@@ -67,6 +70,7 @@ export const rooms = [
   {
     name: "Standard Room",
     slug: "standard-rooms",
+    roomId: "22354",
     description:
       "This air-conditioned room is brightly decorated and features a satellite TV and tea-and-coffee-making facilities. Each has a private bathroom with free toiletries. lease note that this Standard Rooms has NO sea views. We will do our best to secure a room with a sea view should you request, but we cannot guarantee this. For a guaranteed sea view room, please consider our Classic Suites.",
     images: [

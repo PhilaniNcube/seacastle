@@ -18,11 +18,14 @@ import {
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { rooms } from "@/data/rooms";
+import BookingWidget from "@/components/booking-widget";
+import BookingButton from "@/components/booking-button";
 
 type RoomDetailProps = {
   room: {
     name: string;
     slug: string;
+    roomId?: string;
     description: string;
     images: string[];
     attributes: {
@@ -222,44 +225,15 @@ export default function RoomDetail({ room }: RoomDetailProps) {
 
               {/* Room-Specific Availability Widget */}
               <div className="mb-6">
-                <p className="text-xs text-muted-foreground uppercase tracking-wider mb-2">
-                  Availability
+                <p className="text-xs text-muted-foreground uppercase tracking-wider mb-4">
+                  Check Availability
                 </p>
-                <div 
-                  id={`availability-widget-${room.slug}`}
-                  className="bg-background rounded-sm p-6 border border-border min-h-[120px] flex items-center justify-center"
-                >
-                  {/* PASTE YOUR ROOMRACCOON AVAILABILITY WIDGET CODE HERE */}
-                  <div className="text-center">
-                    <p className="text-muted-foreground text-sm">
-                      Availability Widget
-                    </p>
-                    <p className="text-muted-foreground text-xs mt-1">
-                      Container ID: availability-widget-{room.slug}
-                    </p>
-                  </div>
-                </div>
+                <BookingWidget roomId={room.roomId} />
               </div>
 
               {/* Room-Specific Booking Button Widget */}
               <div className="mb-6">
-                <p className="text-xs text-muted-foreground uppercase tracking-wider mb-2">
-                  Book Now
-                </p>
-                <div 
-                  id={`booking-button-widget-${room.slug}`}
-                  className="bg-background rounded-sm p-4 border border-border min-h-[60px] flex items-center justify-center"
-                >
-                  {/* PASTE YOUR ROOMRACCOON BOOKING BUTTON WIDGET CODE HERE */}
-                  <div className="text-center">
-                    <p className="text-muted-foreground text-sm">
-                      Booking Button Widget
-                    </p>
-                    <p className="text-muted-foreground text-xs mt-1">
-                      Container ID: booking-button-widget-{room.slug}
-                    </p>
-                  </div>
-                </div>
+                <BookingButton roomId={room.roomId} label="Book This Room" />
               </div>
 
               <p className="mt-4 text-xs text-muted-foreground text-center">

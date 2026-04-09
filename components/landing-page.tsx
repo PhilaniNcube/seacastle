@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { rooms } from "@/data/rooms";
 import { ArrowRight, MapPin, Phone, Mail, Waves, Coffee, Tv, Bath } from "lucide-react";
+import BookingWidget from "@/components/booking-widget";
 
 export default function LandingPage() {
   return (
@@ -158,22 +159,8 @@ export default function LandingPage() {
             Check availability and secure your seaside escape at Sea Castle Boutique Hotel
           </p>
           
-          {/* Booking Widget Placeholder - Add your RoomRaccoon embed code here */}
           <div className="mt-12 p-12 bg-secondary/50 rounded-sm border border-border">
-            <p className="text-muted-foreground text-sm">
-              Booking widget will appear here
-            </p>
-            <p className="text-muted-foreground text-xs mt-2">
-              Embed your RoomRaccoon availability widget in this section
-            </p>
-            <Link href="https://booking.roomraccoon.co.za/primi-seacastle/en/" target="_blank">
-              <Button
-                size="lg"
-                className="mt-6 bg-accent hover:bg-accent/90 text-accent-foreground tracking-wide uppercase text-sm px-8"
-              >
-                Book Direct
-              </Button>
-            </Link>
+            <BookingWidget />
           </div>
         </div>
       </section>
