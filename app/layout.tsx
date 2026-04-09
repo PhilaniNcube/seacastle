@@ -20,7 +20,14 @@ export const metadata: Metadata = {
   title: "Sea Castle Boutique Hotel",
   description: "Luxury Boutique Hotel in Camps Bay, Cape Town",
   keywords: ["hotel", "luxury", "boutique", "Camps Bay", "Cape Town"],
-  icons: ["/images/secastle-logo.png"],
+  icons: {
+    icon: [
+      { url: '/icon.png', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/apple-icon.png', type: 'image/png' },
+    ],
+  },
   robots: "index, follow",
   openGraph: {
     images: ["/images/secastle-logo.png"],
