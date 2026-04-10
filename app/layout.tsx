@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Inter } from "next/font/google";
-import { GoogleTagManager } from '@next/third-parties/google';
+import { DeferredGTM } from "@/components/deferred-gtm";
 import Navigation from "@/components/navigation";
 import "./globals.css";
 
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["300", "400"],
   variable: "--font-serif",
 });
 
@@ -53,7 +53,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${cormorant.variable} font-sans antialiased`}
       >
-        <GoogleTagManager gtmId={'GTM-MHQDMDSQ'} />
+        <DeferredGTM gtmId="GTM-MHQDMDSQ" />
         <Navigation />
         {children}
       </body>

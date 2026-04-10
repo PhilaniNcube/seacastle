@@ -1,12 +1,10 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { rooms } from "@/data/rooms";
 import { ArrowRight, MapPin, Phone, Mail, Waves, Coffee, Tv, Bath } from "lucide-react";
 import BookingWidget from "@/components/booking-widget";
-import { trackExternalLink, trackNavigation } from "@/lib/gtm";
+import { HeroCTA } from "@/components/hero-cta";
 
 export default function LandingPage() {
   return (
@@ -20,6 +18,7 @@ export default function LandingPage() {
             fill
             className="object-cover"
             priority
+            sizes="100vw"
           />
           <div className="absolute inset-0 bg-foreground/40" />
         </div>
@@ -33,39 +32,7 @@ export default function LandingPage() {
           <p className="mt-6 text-primary-foreground/90 text-lg md:text-xl max-w-2xl leading-relaxed">
             A boutique retreat where the Atlantic Ocean meets timeless elegance
           </p>
-          <div className="mt-10 flex flex-col sm:flex-row gap-4">
-            <Link 
-              href="https://booking.roomraccoon.co.za/primi-seacastle/en/" 
-              target="_blank"
-              onClick={() => trackExternalLink({
-                url: 'https://booking.roomraccoon.co.za/primi-seacastle/en/',
-                linkText: 'Check Availability',
-                linkType: 'booking',
-              })}
-            >
-              <Button
-                size="lg"
-                className="bg-accent hover:bg-accent/90 text-accent-foreground tracking-wide uppercase text-sm px-8 py-6"
-              >
-                Check Availability
-              </Button>
-            </Link>
-            <Link 
-              href="/rooms"
-              onClick={() => trackNavigation({
-                destination: '/rooms',
-                linkText: 'Explore Rooms',
-              })}
-            >
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-primary-foreground/30 text-primary-foreground bg-transparent hover:bg-primary-foreground/10 tracking-wide uppercase text-sm px-8 py-6"
-              >
-                Explore Rooms
-              </Button>
-            </Link>
-          </div>
+          <HeroCTA />
         </div>
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
           <div className="w-6 h-10 border-2 border-primary-foreground/50 rounded-full flex justify-center pt-2">
@@ -143,6 +110,7 @@ export default function LandingPage() {
                     src={room.images[0]}
                     alt={room.name}
                     fill
+                    sizes="(max-width: 768px) 50vw, (max-width: 1024px) 50vw, 25vw"
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 via-transparent to-transparent" />
@@ -233,6 +201,7 @@ export default function LandingPage() {
                 src={rooms[1].images[0]}
                 alt="Camps Bay Location"
                 fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"
               />
             </div>
