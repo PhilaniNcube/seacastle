@@ -17,8 +17,7 @@ export default function LandingPage() {
           <Image
             src="/images/seacastle-hero.webp"
             alt="Sea Castle Boutique Hotel"
-            width={1300}
-            height={852}
+            fill
             className="object-cover"
             priority
           />
