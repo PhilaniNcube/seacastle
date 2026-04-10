@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { rooms } from "@/data/rooms";
 import { ArrowRight, MapPin, Phone, Mail, Waves, Coffee, Tv, Bath } from "lucide-react";
 import BookingWidget from "@/components/booking-widget";
+import { trackExternalLink, trackNavigation } from "@/lib/gtm";
 
 export default function LandingPage() {
   return (
@@ -33,7 +34,15 @@ export default function LandingPage() {
             A boutique retreat where the Atlantic Ocean meets timeless elegance
           </p>
           <div className="mt-10 flex flex-col sm:flex-row gap-4">
-            <Link href="https://booking.roomraccoon.co.za/primi-seacastle/en/" target="_blank">
+            <Link 
+              href="https://booking.roomraccoon.co.za/primi-seacastle/en/" 
+              target="_blank"
+              onClick={() => trackExternalLink({
+                url: 'https://booking.roomraccoon.co.za/primi-seacastle/en/',
+                linkText: 'Check Availability',
+                linkType: 'booking',
+              })}
+            >
               <Button
                 size="lg"
                 className="bg-accent hover:bg-accent/90 text-accent-foreground tracking-wide uppercase text-sm px-8 py-6"
@@ -41,7 +50,13 @@ export default function LandingPage() {
                 Check Availability
               </Button>
             </Link>
-            <Link href="/rooms">
+            <Link 
+              href="/rooms"
+              onClick={() => trackNavigation({
+                destination: '/rooms',
+                linkText: 'Explore Rooms',
+              })}
+            >
               <Button
                 size="lg"
                 variant="outline"

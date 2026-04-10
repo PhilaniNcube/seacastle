@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
@@ -20,6 +20,7 @@ import { Badge } from "@/components/ui/badge";
 import { rooms } from "@/data/rooms";
 import BookingWidget from "@/components/booking-widget";
 import BookingButton from "@/components/booking-button";
+import { trackRoomView, trackGalleryInteraction } from "@/lib/gtm";
 
 type RoomDetailProps = {
   room: {
@@ -39,14 +40,33 @@ type RoomDetailProps = {
 export default function RoomDetail({ room }: RoomDetailProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
+  // Track room view on component mount
+  useEffect(() => {
+    trackRoomView({
+      roomId: room.roomId,
+      roomName: room.name,
+      roomSlug: room.slug,
+    });
+  }, [room.roomId, room.name, room.slug]);
+
   const nextImage = () => {
-    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % room.images.length);
+    const newIndex = (currentImageIndex + 1) % room.images.length;
+    setCurrentImageIndex(newIndex);
+    trackGalleryInteraction({
+      action: 'next',
+      roomName: room.name,
+      imageIndex: newIndex,
+    });
   };
 
   const prevImage = () => {
-    setCurrentImageIndex(
-      (prevIndex) => (prevIndex - 1 + room.images.length) % room.images.length
-    );
+    const newIndex = (currentImageIndex - 1 + room.images.length) % room.images.length;
+    setCurrentImageIndex(newIndex);
+    trackGalleryInteraction({
+      action: 'previous',
+      roomName: room.name,
+      imageIndex: newIndex,
+    });
   };
 
   const otherRooms = rooms.filter((r) => r.slug !== room.slug);
@@ -228,12 +248,17 @@ export default function RoomDetail({ room }: RoomDetailProps) {
                 <p className="text-xs text-muted-foreground uppercase tracking-wider mb-4">
                   Check Availability
                 </p>
-                <BookingWidget roomId={room.roomId} />
+                <BookingWidget roomId={room.roomId} roomName={room.name} />
               </div>
 
               {/* Room-Specific Booking Button Widget */}
               <div className="mb-6">
-                <BookingButton roomId={room.roomId} label="Book This Room" />
+                <BookingButton 
+                  roomId={room.roomId} 
+                  roomName={room.name}
+                  label="Book This Room"
+                  location="room_detail_page"
+                />
               </div>
 
               <p className="mt-4 text-xs text-muted-foreground text-center">

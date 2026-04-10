@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Inter } from "next/font/google";
+import { GoogleTagManager } from '@next/third-parties/google';
 import Navigation from "@/components/navigation";
 import "./globals.css";
 
@@ -52,6 +53,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${cormorant.variable} font-sans antialiased`}
       >
+        <GoogleTagManager gtmId={'GTM-MHQDMDSQ'} />
         <Navigation />
         {children}
       </body>

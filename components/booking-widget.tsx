@@ -2,12 +2,14 @@
 
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { trackCheckAvailability } from "@/lib/gtm";
 
 type BookingWidgetProps = {
   roomId?: string;
+  roomName?: string;
 };
 
-export default function BookingWidget({ roomId }: BookingWidgetProps) {
+export default function BookingWidget({ roomId, roomName }: BookingWidgetProps) {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
 
@@ -32,6 +34,14 @@ export default function BookingWidget({ roomId }: BookingWidgetProps) {
   };
 
   const handleCheckAvailability = () => {
+    // Track event
+    trackCheckAvailability({
+      roomId,
+      roomName,
+      startDate,
+      endDate,
+    });
+
     const roomHash = roomId ? `#${roomId}` : '';
     const bookingUrl = `https://booking.roomraccoon.co.za/primi-seacastle/en/?dateStart=${startDate}&dateEnd=${endDate}${roomHash}`;
     window.open(bookingUrl, '_blank');
