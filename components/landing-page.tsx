@@ -15,9 +15,10 @@ export default function LandingPage() {
       <section className="relative h-screen">
         <div className="absolute inset-0">
           <Image
-            src={rooms[0].images[0]}
+            src="/images/seacastle-hero.webp"
             alt="Sea Castle Boutique Hotel"
-            fill
+            width={1300}
+            height={852}
             className="object-cover"
             priority
           />
