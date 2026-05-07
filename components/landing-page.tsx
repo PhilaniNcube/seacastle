@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { rooms } from "@/data/rooms";
-import { ArrowRight, MapPin, Phone, Mail, Waves, Coffee, Tv, Bath } from "lucide-react";
+import { ArrowRight, MapPin, Phone, Mail, Waves, Coffee, Tv, Bath, Snowflake } from "lucide-react";
 import BookingWidget from "@/components/booking-widget";
 import { HeroCTA } from "@/components/hero-cta";
 
@@ -54,7 +54,7 @@ export default function LandingPage() {
             <p className="mt-8 text-muted-foreground text-lg leading-relaxed">
               Nestled along the pristine shores of Camps Bay, Sea Castle offers an intimate 
               escape where every detail has been thoughtfully curated. Wake to the sound of 
-              waves, savor breakfast with panoramic ocean views, and experience the warmth 
+              waves, enjoy complimentary breakfast and spa access, and experience the warmth 
               of South African hospitality.
             </p>
           </div>
@@ -62,8 +62,8 @@ export default function LandingPage() {
           <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
             {[
               { icon: Waves, label: "Ocean Views", desc: "Breathtaking Atlantic vistas" },
-              { icon: Coffee, label: "Breakfast", desc: "Complimentary daily" },
-              { icon: Bath, label: "Private Bath", desc: "En-suite bathrooms" },
+              { icon: Coffee, label: "Free Breakfast", desc: "Complimentary daily" },
+              { icon: Snowflake, label: "Spa Access", desc: "Sauna & ice plunge with booking" },
               { icon: Tv, label: "Modern Amenities", desc: "Satellite TV & WiFi" },
             ].map((amenity) => (
               <div key={amenity.label} className="text-center">
@@ -138,8 +138,9 @@ export default function LandingPage() {
           <h2 className="mt-4 font-serif text-4xl md:text-5xl font-light tracking-tight text-balance">
             Plan Your Stay
           </h2>
-          <p className="mt-6 text-muted-foreground text-lg max-w-2xl mx-auto">
-            Check availability and secure your seaside escape at Sea Castle Boutique Hotel
+          <p className="mt-6 text-muted-foreground text-lg max-w-2xl mx-auto flex flex-col gap-2">
+            <span>Check availability and secure your seaside escape at Sea Castle Boutique Hotel.</span>
+            <span className="font-medium text-foreground">Book direct for the best available rate and exclusive guest perks.</span>
           </p>
           
           <div className="mt-12 p-12 bg-secondary/50 rounded-sm border border-border">
@@ -205,6 +206,36 @@ export default function LandingPage() {
                 className="object-cover"
               />
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Surf Cam Section */}
+      <section className="py-24 md:py-32">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="mb-12 text-center">
+            <span className="text-accent tracking-[0.2em] uppercase text-sm font-medium">
+              Live View
+            </span>
+            <h2 className="mt-4 font-serif text-4xl md:text-5xl font-light tracking-tight">
+              Camps Bay Surf Cam
+            </h2>
+            <p className="mt-4 text-muted-foreground text-lg max-w-2xl mx-auto">
+              Check the current conditions at Camps Bay beach right from our doorstep.
+            </p>
+          </div>
+          <div className="w-full max-w-5xl mx-auto rounded-sm overflow-hidden border border-border bg-secondary/50 p-2">
+            {/* WIDGET VERSION 3.0 May 2026 | ZA - Camps Bay */}
+            <div className="sl-cam-embed" style={{ position: 'relative', paddingBottom: 'calc(56.25% + 40px)' }}>
+              <iframe
+                style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+                src="https://embed.cdn-surfline.com/cams/619e31b778e5f7038a984f7a/2108a1ce717f5098ff872e8958151827aed0934a"
+                frameBorder="0"
+                allowFullScreen
+              >
+              </iframe>
+            </div>
+            {/* WIDGET CONTENTS COPYRIGHT SURFLINE.COM 2026 */}
           </div>
         </div>
       </section>
