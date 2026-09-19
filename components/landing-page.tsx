@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { rooms } from "@/data/rooms";
-import { ArrowRight, MapPin, Phone, Mail, Waves, Coffee, Tv, Bath, Snowflake } from "lucide-react";
+import { ArrowRight, MapPin, Phone, Mail, Waves, Coffee, Tv, Snowflake, BadgeCheck } from "lucide-react";
 import BookingWidget from "@/components/booking-widget";
 import { HeroCTA } from "@/components/hero-cta";
 
@@ -30,8 +30,20 @@ export default function LandingPage() {
             Sea Castle
           </h1>
           <p className="mt-6 text-primary-foreground/90 text-lg md:text-xl max-w-2xl leading-relaxed">
-            A boutique retreat where the Atlantic Ocean meets timeless elegance
+            A humble little hotel with a big Atlantic Ocean view
           </p>
+          <div className="mt-8 flex flex-col items-center gap-4">
+            <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-primary-foreground/80 uppercase tracking-[0.2em] text-xs sm:text-sm">
+              <span>Complimentary Breakfasts</span>
+              <span aria-hidden="true" className="text-primary-foreground/40">
+                &middot;
+              </span>
+              <span>Private Sauna &amp; Ice Plunge</span>
+            </div>
+            <span className="inline-flex items-center rounded-full border border-primary-foreground/30 bg-primary-foreground/10 px-4 py-1.5 text-xs tracking-[0.2em] uppercase text-primary-foreground/90 backdrop-blur-sm">
+              Exclusively when booking direct
+            </span>
+          </div>
           <HeroCTA />
         </div>
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
@@ -62,8 +74,8 @@ export default function LandingPage() {
           <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
             {[
               { icon: Waves, label: "Ocean Views", desc: "Breathtaking Atlantic vistas" },
-              { icon: Coffee, label: "Free Breakfast", desc: "Complimentary daily" },
-              { icon: Snowflake, label: "Spa Access", desc: "Sauna & ice plunge with booking" },
+              { icon: Coffee, label: "Complimentary Breakfasts", desc: "Included with every stay" },
+              { icon: Snowflake, label: "Private Sauna & Ice Plunge", desc: "Free when you book direct" },
               { icon: Tv, label: "Modern Amenities", desc: "Satellite TV & WiFi" },
             ].map((amenity) => (
               <div key={amenity.label} className="text-center">
@@ -74,6 +86,54 @@ export default function LandingPage() {
                 <p className="mt-1 text-sm text-muted-foreground">{amenity.desc}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Book Direct Exclusive Section */}
+      <section className="py-24 md:py-32 bg-foreground text-primary-foreground">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="max-w-3xl mx-auto text-center">
+            <span className="text-accent tracking-[0.2em] uppercase text-sm font-medium">
+              Book Direct
+            </span>
+            <h2 className="mt-4 font-serif text-4xl md:text-5xl font-light tracking-tight text-balance">
+              Exclusive Direct Booking Perks
+            </h2>
+            <p className="mt-6 text-primary-foreground/70 text-lg leading-relaxed">
+              Reserve directly with Sea Castle and unlock privileges reserved only
+              for our guests.
+            </p>
+          </div>
+
+          <div className="mt-16 grid md:grid-cols-3 gap-12">
+            {[
+              { icon: Coffee, label: "Complimentary Breakfasts", desc: "A fresh start to every seaside morning" },
+              { icon: Snowflake, label: "Private Sauna & Ice Plunge", desc: "Restore and revive in your own retreat" },
+              { icon: BadgeCheck, label: "Exclusively when booking direct", desc: "Perks not available on third-party sites" },
+            ].map((perk) => (
+              <div key={perk.label} className="text-center">
+                <div className="w-14 h-14 mx-auto rounded-full bg-primary-foreground/10 flex items-center justify-center">
+                  <perk.icon className="h-6 w-6 text-accent" />
+                </div>
+                <h3 className="mt-4 font-medium text-primary-foreground">{perk.label}</h3>
+                <p className="mt-1 text-sm text-primary-foreground/60">{perk.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-12 text-center">
+            <Link
+              href="https://booking.roomraccoon.co.za/primi-seacastle/en/"
+              target="_blank"
+            >
+              <Button
+                size="lg"
+                className="bg-accent hover:bg-accent/90 text-accent-foreground tracking-wide uppercase text-sm px-8 py-6"
+              >
+                Book Direct
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
@@ -140,7 +200,7 @@ export default function LandingPage() {
           </h2>
           <p className="mt-6 text-muted-foreground text-lg max-w-2xl mx-auto flex flex-col gap-2">
             <span>Check availability and secure your seaside escape at Sea Castle Boutique Hotel.</span>
-            <span className="font-medium text-foreground">Book direct for the best available rate and exclusive guest perks.</span>
+            <span className="font-medium text-foreground">Book direct and receive complimentary breakfasts plus private sauna &amp; ice plunge access &mdash; exclusive to direct bookings.</span>
           </p>
           
           <div className="mt-12 p-12 bg-secondary/50 rounded-sm border border-border">
