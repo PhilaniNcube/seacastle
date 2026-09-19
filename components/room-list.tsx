@@ -90,12 +90,7 @@ export default function RoomList() {
           
           {/* Availability Widget Placeholder */}
           <div className="mt-10 p-10 bg-background rounded-sm border border-border">
-            <p className="text-muted-foreground text-sm">
-              Booking widget will appear here
-            </p>
-            <p className="text-muted-foreground text-xs mt-2">
-              Embed your RoomRaccoon availability widget in this section
-            </p>
+           
             <Link
               href="https://booking.roomraccoon.co.za/primi-seacastle/en/"
               target="_blank"
