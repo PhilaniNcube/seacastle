@@ -7,6 +7,10 @@ type Props = {
   params: Promise<{ slug: string }>;
 };
 
+// All rooms are known at build time; disable on-demand generation so unknown
+// slugs 404 without triggering an ISR write.
+export const dynamicParams = false;
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const room = rooms.find((room) => room.slug === slug);
