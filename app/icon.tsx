@@ -1,7 +1,8 @@
 import { ImageResponse } from 'next/og'
 
-export const runtime = 'edge'
-
+// Do NOT add `export const runtime = 'edge'` here. Edge runtime disables static
+// generation for metadata routes, turning every favicon request into an Edge
+// Function invocation. Without it this is prerendered to a static PNG.
 // Image metadata
 export const size = {
   width: 32,

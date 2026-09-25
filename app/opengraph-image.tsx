@@ -1,7 +1,8 @@
 import { ImageResponse } from 'next/og'
 
-export const runtime = 'edge'
-
+// Do NOT add `export const runtime = 'edge'` here. Edge runtime disables static
+// generation for metadata routes, turning every social-crawler OG image request
+// into an Edge Function invocation. Without it this is prerendered to a static PNG.
 export const alt = 'Sea Castle Boutique Hotel'
 export const size = {
   width: 1200,
